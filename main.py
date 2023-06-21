@@ -3,6 +3,7 @@ MENU = {
         "ingredients": {
             "water": 50,
             "coffee": 18,
+            "milk":0,
         },
         "cost": 1.5,
     },
@@ -47,7 +48,9 @@ def make_coffee(data):
     user_money+=float(input("How many nickles?: "))*0.05
     user_money+=float(input("How many pennies?: "))*0.01
     user_money=round(user_money,2)
-    
+
+    #write code to check if the recourses are available
+
     #check money with the required money
     if user_money<request['cost']:
         print( "You entered less money, your drink is cannot be prepared")
@@ -73,6 +76,9 @@ while True:
         print(f"Money: ${money}")
     elif user_request!='espresso' and user_request!='latte' and user_request!='cappuccino':
         print("Wrong input")
+    #write code to check if the recourses are available
+    elif resources['water']<MENU[user_request]['ingredients']['water'] or resources['milk']<MENU[user_request]['ingredients']['milk'] or resources['coffee']<MENU[user_request]['ingredients']['coffee']:
+        print("Not enough resources. Please check back later")
     else:
         make_coffee(user_request)
 
